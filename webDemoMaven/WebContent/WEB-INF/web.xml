@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>webDemoMaven</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>WebDemoMaven2</display-name>
+	<welcome-file-list>
+		<welcome-file>welcome.html</welcome-file>
+	</welcome-file-list>
+
+	<!-- private page  -->
+	<servlet>
+		<servlet-name>private</servlet-name>
+		<jsp-file>/WEB-INF/html/private.html</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>private</servlet-name>
+		<url-pattern>/private</url-pattern>
+	</servlet-mapping>
+
+	<!-- error page  -->
+	<servlet>
+		<servlet-name>error</servlet-name>
+		<jsp-file>/error.html</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>error</servlet-name>
+		<url-pattern>/error</url-pattern>
+	</servlet-mapping>
+
+	<!-- front door  -->
+	<servlet>
+		<servlet-name>frontDoor</servlet-name>
+		<servlet-class>Servlet.EIAFrontDoor</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>frontDoor</servlet-name>
+		<url-pattern>/fd/*</url-pattern>
+	</servlet-mapping>
+
 </web-app>
