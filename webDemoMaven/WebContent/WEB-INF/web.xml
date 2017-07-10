@@ -33,7 +33,7 @@
 	<!-- front door  -->
 	<servlet>
 		<servlet-name>frontDoor</servlet-name>
-		<servlet-class>Servlet.EIAFrontDoor</servlet-class>
+		<servlet-class>Servlet.ServletFrontDoor</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
