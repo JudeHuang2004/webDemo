@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project basedir="." default="build_webDemoAnt" name="webDemoAnt">
+
+	<property name="src.dir" value="src" />
+	<property name="web.dir" value="WebContent" />
+	<property name="dist.dir" value="webapps" />
+
+	<path id="web-classpath">
+		<fileset dir="${web.dir}/WEB-INF/lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="build_webDemoAnt">
+
+		<echo message="Begin Target: build_webDemoAnt" />
+
+		<delete dir="${basedir}/webapps" />
+
+		<mkdir dir="${basedir}/webapps" />
+
+		<!-- Build Java files from build Control. -->
+		<antcall target="build" />
+
+		<!-- Package war file from build Control. -->
+		<antcall target="package" />
+
+		<echo message="End Target: build_webDemoAnt" />
+	</target>
+
+	<target name="build" description="Compile Java files">
+		<echo message="Build Java files from build Control." />
+		<delete dir="${web.dir}/WEB-INF/classes" />
+		<mkdir dir="${web.dir}/WEB-INF/classes" />
+		<javac destdir="${web.dir}/WEB-INF/classes" includeantruntime="false">
+			<src path="${src.dir}" />
+			<classpath refid="web-classpath" />
+		</javac>
+	</target>
+
+	<target name="package" depends="build" description="Package a war file">
+		<echo message="Package war file from build Control." />
+		<war destfile="${dist.dir}/webDemoAnt.war" webxml="${web.dir}/WEB-INF/web.xml">
+			<fileset dir="${web.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</war>
+	</target>
+
+</project>
